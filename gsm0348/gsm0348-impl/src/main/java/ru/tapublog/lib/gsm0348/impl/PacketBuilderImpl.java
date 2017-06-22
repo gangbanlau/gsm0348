@@ -7,8 +7,8 @@ import java.util.Arrays;
 import javax.crypto.NoSuchPaddingException;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import ru.tapublog.lib.gsm0348.api.Gsm0348Exception;
 import ru.tapublog.lib.gsm0348.api.PacketBuilder;
@@ -35,7 +35,7 @@ import ru.tapublog.lib.gsm0348.impl.crypto.SignatureManager;
 
 public class PacketBuilderImpl implements PacketBuilder
 {
-	private static final Logger LOGGER = Logger.getLogger(PacketBuilderImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(PacketBuilderImpl.class);
 
 	private boolean commandPacketCiphering;
 	private boolean commandPacketSigning;
@@ -172,8 +172,8 @@ public class PacketBuilderImpl implements PacketBuilder
 
 		if (commandSPI.getCertificationMode() == CertificationMode.DS)
 			throw new PacketBuilderConfigurationException("Digital signature in command packets is not supported");
-		if (commandSPI.getCertificationMode() == CertificationMode.RC)
-			throw new PacketBuilderConfigurationException("Redundancy checking in command packets is not supported");
+/*		if (commandSPI.getCertificationMode() == CertificationMode.RC)
+			throw new PacketBuilderConfigurationException("Redundancy checking in command packets is not supported");*/
 		if (responseSPI.getPoRCertificateMode() == CertificationMode.DS)
 			throw new PacketBuilderConfigurationException("Digital signature in response packets is not supported");
 		if (responseSPI.getPoRCertificateMode() == CertificationMode.RC)
@@ -189,7 +189,7 @@ public class PacketBuilderImpl implements PacketBuilder
 		responsePacketSigning = responseSPI.getPoRCertificateMode() != CertificationMode.NO_SECURITY;
 
 		if (commandPacketSigning || responsePacketSigning)
-			setSigningAlgorithmName(cardProfile);
+			setSigningAlgorithmName(cardProfile, commandSPI.getCertificationMode());
 
 		usingCounters = commandSPI.getSynchroCounterMode() != SynchroCounterMode.NO_COUNTER;
 
@@ -206,8 +206,14 @@ public class PacketBuilderImpl implements PacketBuilder
 		}
 	}
 
-	private void setSigningAlgorithmName(CardProfile cardProfile) throws PacketBuilderConfigurationException
+	private void setSigningAlgorithmName(CardProfile cardProfile, CertificationMode cm) throws PacketBuilderConfigurationException
 	{
+		if (cm == CertificationMode.RC)
+		{
+			signatureAlgorithmName = SignatureManager.CRC_32;
+		}
+		else 
+		{
 		final KID kid = cardProfile.getKID();
 		switch (kid.getAlgorithmImplementation())
 		{
@@ -242,6 +248,7 @@ public class PacketBuilderImpl implements PacketBuilder
 				break;
 			default:
 				throw new PacketBuilderConfigurationException("Not implemented yet");
+		}
 		}
 		try
 		{
@@ -512,7 +519,7 @@ public class PacketBuilderImpl implements PacketBuilder
 			if (data.length >= MINIMUM_RESPONSE_PACKET_SIZE)
 			{
 				message += ". It can be caused by incorrect profile(SPI value). Check SPI!";
-				if (LOGGER.isEnabledFor(Level.WARN))
+				if (LOGGER.isWarnEnabled())
 					LOGGER.warn("Packet recived(raw): " + Util.toHexArray(data));
 			}
 			throw new Gsm0348Exception(message);

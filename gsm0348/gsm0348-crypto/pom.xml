@@ -4,7 +4,7 @@
 	<parent>
 		<artifactId>gsm0348</artifactId>
 		<groupId>ru.tapublog.lib.gsm0348</groupId>
-		<version>1.2.3</version>
+		<version>1.2.4</version>
 	</parent>
 	<artifactId>gsm0348-crypto</artifactId>
 	<name>GSM 03.48 :: Crypto</name>
@@ -63,18 +63,18 @@
 			<artifactId>gsm0348-api</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-		</dependency>
+			<dependency>
+    			<groupId>org.slf4j</groupId>
+    			<artifactId>slf4j-api</artifactId>
+			</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>bouncycastle</groupId>
-			<artifactId>bcprov-jdk16</artifactId>
-		</dependency>
+			<dependency>
+    			<groupId>org.bouncycastle</groupId>
+    			<artifactId>bcprov-jdk16</artifactId>    			
+			</dependency>
 	</dependencies>
 </project>

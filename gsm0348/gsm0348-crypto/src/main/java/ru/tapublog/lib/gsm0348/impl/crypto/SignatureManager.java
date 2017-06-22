@@ -1,13 +1,17 @@
 package ru.tapublog.lib.gsm0348.impl.crypto;
 
+import java.nio.ByteBuffer;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+import java.util.zip.CRC32;
+import java.util.zip.Checksum;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import ru.tapublog.lib.gsm0348.impl.crypto.mac.DESMACISO9797M1;
 import ru.tapublog.lib.gsm0348.impl.crypto.params.KeyParameter;
@@ -22,8 +26,9 @@ import ru.tapublog.lib.gsm0348.impl.crypto.params.ParametersWithIV;
  */
 public class SignatureManager
 {
-	private static final Logger LOGGER = Logger.getLogger(SignatureManager.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(SignatureManager.class);
 	public static final String DES_MAC8_ISO9797_M1 = "DES_MAC8_ISO9797_M1";
+	public static final String CRC_32 = "CRC-32";
 	
 	private SignatureManager()
 	{
@@ -54,7 +59,15 @@ public class SignatureManager
 		if (LOGGER.isDebugEnabled())
 			LOGGER.debug("Signing. Data length:" + data.length);
 		if(DES_MAC8_ISO9797_M1.equals(algName)) return runOwnMac(new DESMACISO9797M1(),key,data);
-		
+		if (CRC_32.equals(algName))
+		{
+		    Checksum checksum = new CRC32(); // java.util.zip.CRC32
+	        checksum.update(data, 0, data.length);
+	        ByteBuffer buffer = ByteBuffer.allocate(Long.BYTES);
+	        buffer.putLong(checksum.getValue());
+	        byte[] rc = buffer.array();
+	        return Arrays.copyOfRange(rc, 4, rc.length);
+		}
 		return doWork(algName, key, data);
 	}
 
@@ -76,6 +89,11 @@ public class SignatureManager
 
 	public static int signLength(String algName) throws NoSuchAlgorithmException
 	{
+		if (CRC_32.equals(algName)) 
+		{
+			return 4;
+		}
+		
 		if(DES_MAC8_ISO9797_M1.equals(algName)) // TODO: remove this block after adding something better
 		{
 			if (LOGGER.isDebugEnabled())

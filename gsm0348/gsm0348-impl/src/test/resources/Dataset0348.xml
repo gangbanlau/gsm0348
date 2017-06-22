@@ -963,7 +963,46 @@
 			<RequestResult>00381516011111000000f9498ad3b9e797f04f92b075508023cd6ab4fc11f6f7ba416e115c00181486a4b17357b3a7d95d3a6741d30afe01e8e7</RequestResult>
 		</Result>
 	</testcase>
-
+	<testcase name="test103">
+		<CardProfile>
+			<gsm0348:Name>TestProfile</gsm0348:Name>
+			<gsm0348:KIC>
+				<gsm0348:KeysetID>1</gsm0348:KeysetID>
+				<gsm0348:CipheringAlgorithmMode>TRIPLE_DES_CBC_2_KEYS</gsm0348:CipheringAlgorithmMode>
+				<gsm0348:AlgorithmImplementation>DES</gsm0348:AlgorithmImplementation>
+			</gsm0348:KIC>
+			<gsm0348:KID>
+				<gsm0348:KeysetID>1</gsm0348:KeysetID>
+				<gsm0348:CertificationAlgorithmMode>TRIPLE_DES_CBC_2_KEYS</gsm0348:CertificationAlgorithmMode>
+				<gsm0348:AlgorithmImplementation>DES</gsm0348:AlgorithmImplementation>
+			</gsm0348:KID>
+			<gsm0348:SPI>
+				<gsm0348:CommandSPI>
+					<gsm0348:CertificationMode>RC</gsm0348:CertificationMode>
+					<gsm0348:SynchroCounterMode>COUNTER_REPLAY_OR_CHECK</gsm0348:SynchroCounterMode>
+					<gsm0348:Ciphered>true</gsm0348:Ciphered>
+				</gsm0348:CommandSPI>
+				<gsm0348:ResponseSPI>
+					<gsm0348:PoRProtocol>SMS_DELIVER_REPORT</gsm0348:PoRProtocol>
+					<gsm0348:PoRMode>NO_REPLY</gsm0348:PoRMode>
+					<gsm0348:PoRCertificateMode>NO_SECURITY</gsm0348:PoRCertificateMode>
+					<gsm0348:Ciphered>false</gsm0348:Ciphered>
+				</gsm0348:ResponseSPI>
+			</gsm0348:SPI>
+			<gsm0348:TAR>B00010</gsm0348:TAR>
+			<gsm0348:SecurityBytesType>WITH_LENGHTS_AND_UDHL</gsm0348:SecurityBytesType>
+			<gsm0348:SignatureAlgorithm></gsm0348:SignatureAlgorithm>
+			<gsm0348:CipheringAlgorithm></gsm0348:CipheringAlgorithm>
+		</CardProfile>
+		<CipheringKey>D382E547B32F46A981FB1789DE20C4ED</CipheringKey>
+		<SignatureKey>67062EAE4534B19DFCE61464597DF320</SignatureKey>
+		<Counter>0000000001</Counter>
+		<Data>A0A40000023F00A0A40000027F20A0A40000026F46A0D600001100486921486921FFFFFFFFFFFFFFFFFFFF</Data>
+		<Result>
+			<RequestResult>00401115001515B000108BDF0E550C1788776C90637187EE5E13923723D634803CA775239C69874F0976BC14AEDF6D9A21B8547EDB40480FF8D0233CC4CCED0EC612</RequestResult>
+		</Result>
+	</testcase>
+	
 	<testcase type="response" name="Response-501">
 		<CardProfile>
 			<gsm0348:Name>TestProfile</gsm0348:Name>

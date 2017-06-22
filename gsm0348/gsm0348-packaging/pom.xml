@@ -4,7 +4,7 @@
 	<parent>
 		<artifactId>gsm0348</artifactId>
 		<groupId>ru.tapublog.lib.gsm0348</groupId>
-		<version>1.2.3</version>
+		<version>1.2.4</version>
 	</parent>
 	<artifactId>gsm0348-packaging</artifactId>
 	<packaging>pom</packaging>
@@ -86,9 +86,9 @@
 			<version>${project.version}</version>
 			<classifier>sources</classifier>
 		</dependency>
-		<dependency>
-			<groupId>bouncycastle</groupId>
-			<artifactId>bcprov-jdk16</artifactId>
-		</dependency>
+			<dependency>
+    			<groupId>org.bouncycastle</groupId>
+    			<artifactId>bcprov-jdk16</artifactId>    		
+			</dependency>
 	</dependencies>
 </project>

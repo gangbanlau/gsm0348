@@ -12,7 +12,9 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 /**
  * This utility class is used for ciphering operations during GSM 03.48 packet
@@ -22,7 +24,7 @@ import org.apache.log4j.Logger;
  */
 public class CipheringManager
 {
-	private static final Logger LOGGER = Logger.getLogger(CipheringManager.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(CipheringManager.class);
 
 	private CipheringManager()
 	{

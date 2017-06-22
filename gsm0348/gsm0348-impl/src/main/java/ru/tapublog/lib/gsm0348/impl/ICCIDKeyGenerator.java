@@ -3,7 +3,8 @@ package ru.tapublog.lib.gsm0348.impl;
 import java.security.GeneralSecurityException;
 import java.util.Arrays;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import ru.tapublog.lib.gsm0348.impl.crypto.CipheringManager;
 import ru.tapublog.lib.gsm0348.impl.crypto.Util;
@@ -11,7 +12,7 @@ import ru.tapublog.lib.gsm0348.impl.crypto.Util;
 public class ICCIDKeyGenerator
 {
 
-	private static final Logger LOGGER = Logger.getLogger(ICCIDKeyGenerator.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ICCIDKeyGenerator.class);
 
 	private static final int ICCID_LENGTH = 20;
 	private static final int ICCID_LENGTH_WITHOUT_LUHN = 19;

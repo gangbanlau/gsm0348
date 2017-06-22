@@ -2,7 +2,8 @@ package ru.tapublog.lib.gsm0348.impl.coders;
 
 import java.util.Arrays;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import ru.tapublog.lib.gsm0348.api.model.CardProfile;
 import ru.tapublog.lib.gsm0348.api.model.KIC;
@@ -20,7 +21,7 @@ import ru.tapublog.lib.gsm0348.impl.crypto.SignatureManager;
 public class CardProfileCoder
 {
 
-	private static final Logger LOGGER = Logger.getLogger(CardProfileCoder.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(CardProfileCoder.class);
 
 	private static final int PACKET_LENGHT_SIZE = 2;
 
