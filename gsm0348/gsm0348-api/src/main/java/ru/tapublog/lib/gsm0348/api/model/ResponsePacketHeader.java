@@ -91,6 +91,13 @@ public class ResponsePacketHeader
 		ResponsePacketHeader other = (ResponsePacketHeader) obj;
 		if (responseStatus != other.responseStatus)
 			return false;
+		if (!Arrays.equals(counter, other.counter))
+			return false;
+		if (!Arrays.equals(tar, other.tar))
+			return false;
+		if (other.paddingCounter != paddingCounter)
+			return false;
+		
 		return true;
 	}
 

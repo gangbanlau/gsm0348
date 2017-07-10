@@ -104,6 +104,8 @@ public class DataDrivenPacketTest extends TestCase
 				try
 				{
 					packet = builder.recoverResponsePacket(testcase.getData(), testcase.getCipheringKey(), testcase.getSignatureKey());
+					//System.out.println(packet.toString());
+					//System.out.println(testcase.getResult().getResponseResult().getValue());
 				}
 				catch (Exception exception)
 				{

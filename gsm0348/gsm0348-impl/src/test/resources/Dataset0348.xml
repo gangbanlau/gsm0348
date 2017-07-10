@@ -1093,7 +1093,7 @@
 				<gsm0348:Header>
 					<gsm0348:TAR>C00203</gsm0348:TAR>
 					<gsm0348:PaddingCounter>7</gsm0348:PaddingCounter>
-					<gsm0348:Counter>0000000000</gsm0348:Counter>
+					<gsm0348:Counter>0000000042</gsm0348:Counter>
 					<gsm0348:ResponseStatus>POR_OK</gsm0348:ResponseStatus>
 				</gsm0348:Header>
 			</ResponseResult>
@@ -1149,6 +1149,55 @@
 		</Result>
 	</testcase>
 		
+	<testcase type="response" name="Response-602">
+		<CardProfile>
+			<gsm0348:Name>TestProfile</gsm0348:Name>
+			<gsm0348:KIC>
+				<gsm0348:KeysetID>1</gsm0348:KeysetID>
+				<gsm0348:CipheringAlgorithmMode>TRIPLE_DES_CBC_2_KEYS</gsm0348:CipheringAlgorithmMode>
+				<gsm0348:AlgorithmImplementation>DES</gsm0348:AlgorithmImplementation>
+			</gsm0348:KIC>
+			<gsm0348:KID>
+				<gsm0348:KeysetID>1</gsm0348:KeysetID>
+				<gsm0348:CertificationAlgorithmMode>TRIPLE_DES_CBC_2_KEYS</gsm0348:CertificationAlgorithmMode>
+				<gsm0348:AlgorithmImplementation>DES</gsm0348:AlgorithmImplementation>
+			</gsm0348:KID>
+			<gsm0348:SPI>
+				<gsm0348:CommandSPI>
+					<gsm0348:CertificationMode>RC</gsm0348:CertificationMode>
+					<gsm0348:SynchroCounterMode>COUNTER_REPLAY_OR_CHECK</gsm0348:SynchroCounterMode>
+					<gsm0348:Ciphered>true</gsm0348:Ciphered>
+				</gsm0348:CommandSPI>
+				<gsm0348:ResponseSPI>
+					<gsm0348:PoRProtocol>SMS_DELIVER_REPORT</gsm0348:PoRProtocol>
+					<gsm0348:PoRMode>REPLY_ALWAYS</gsm0348:PoRMode>
+					<gsm0348:PoRCertificateMode>NO_SECURITY</gsm0348:PoRCertificateMode>
+					<gsm0348:Ciphered>false</gsm0348:Ciphered>
+				</gsm0348:ResponseSPI>
+			</gsm0348:SPI>
+			<gsm0348:TAR>B00010</gsm0348:TAR>
+			<gsm0348:SecurityBytesType>WITH_LENGHTS_AND_UDHL</gsm0348:SecurityBytesType>
+			<gsm0348:SignatureAlgorithm></gsm0348:SignatureAlgorithm>
+			<gsm0348:CipheringAlgorithm></gsm0348:CipheringAlgorithm>
+		</CardProfile>
+		<CipheringKey>D382E547B32F46A981FB1789DE20C4ED</CipheringKey>
+		<SignatureKey>67062EAE4534B19DFCE61464597DF320</SignatureKey>
+		<Counter>0000000018</Counter>
+		<Data>000E0AB0001000000000180000049000</Data>
+		<Result>
+			<ResponseResult>
+				<gsm0348:Data>049000</gsm0348:Data>
+				<gsm0348:Header>
+					<gsm0348:TAR>B00010</gsm0348:TAR>
+					<gsm0348:PaddingCounter>0</gsm0348:PaddingCounter>
+					<gsm0348:Counter>0000000018</gsm0348:Counter>
+					<gsm0348:ResponseStatus>POR_OK</gsm0348:ResponseStatus>
+				</gsm0348:Header>
+			</ResponseResult>
+			<!--  000E0A B00010 0000000007 00 00 049000 -->
+		</Result>
+	</testcase>
+			
 	<!-- <testcase type="response" name="Response-502"> <CardProfile> <gsm0348:KIC> <gsm0348:KeysetID>0</gsm0348:KeysetID> <gsm0348:CipheringAlgorithmMode>DES_CBC</gsm0348:CipheringAlgorithmMode> 
 		<gsm0348:AlgorithmImplementation>ALGORITHM_KNOWN_BY_BOTH_ENTITIES</gsm0348:AlgorithmImplementation> </gsm0348:KIC> <gsm0348:KID> <gsm0348:KeysetID>0</gsm0348:KeysetID> 
 		<gsm0348:CertificationAlgorithmMode>DES_CBC</gsm0348:CertificationAlgorithmMode> <gsm0348:AlgorithmImplementation>DES</gsm0348:AlgorithmImplementation> 
