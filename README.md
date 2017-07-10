@@ -1,11 +1,13 @@
-New features:
-  . Command packet Redundancy Check (RC) 
+# GSM 03.48
 
-Bugfix:
-  . check git history
+## New features:
+### . Command packet Redundancy Check (RC) 
 
-Testcase:
-  . more testcase
+## Bugfix:
+### . check git history
+
+## Testcase:
+### . more testcase
 
 plese create an issue if you have some usefull testcase or request bugfix
 
