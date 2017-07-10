@@ -1,3 +1,15 @@
+New features:
+  . Command packet Redundancy Check (RC) 
+
+Bugfix:
+  . check git history
+
+Testcase:
+  . more testcase
+
+plese create an issue if you have some usefull testcase or request bugfix
+
+-----------------------------------------------------------------
 **If you have ANY questions - please mail me(tapumail@gmail.com)**
 
 #API and realization of GSM 03.48 standard for Java
